@@ -1,38 +1,23 @@
-# 电商零售用户行为分析（PySpark）
+# 数据集说明（retail_data.csv）
 
-## 项目简介
-本项目基于公开电商订单数据集，使用 PySpark 进行大规模数据清洗与统计分析，旨在挖掘用户购买行为、商品销售表现及区域分布等核心业务指标。
+## 数据来源
+公开零售交易数据集（Online Retail），包含英国某电商 2010–2011 年交易记录。
 
-## 技术栈
-- 语言：Python 3.x
-- 大数据引擎：PySpark 3.x
-- 核心能力：数据清洗、缺失值处理、异常值过滤、分组统计
+## 字段说明
+- InvoiceNo：订单号（C 开头表示取消订单）
+- StockCode：商品编码
+- Description：商品名称
+- Quantity：购买数量（负数为退货）
+- InvoiceDate：订单时间
+- UnitPrice：单价
+- CustomerID：用户ID
+- Country：国家
 
-## 运行说明
-1.  安装依赖：
-    ```bash
-    pip install pyspark
-2. 运行代码：
-    ```bash
-    python retail_analysis.py
-##核心步骤
-数据加载与清洗
-加载订单数据，过滤空值、异常值（如负数量、负价格）
-清洗后有效数据量：397884 条（原始数据 541909 条）
-统计分析
-订单总量、用户数、国家分布
-热门商品销量排行
-客户消费金额与频次分析
-##项目亮点
-使用 PySpark 处理十万级数据，代码可扩展至更大规模数据集
-完整的清洗逻辑，保证数据质量
-结果清晰易读，可直接用于业务决策参考
-## 项目结构
-retail-spark-analysis/
-├── README.md
-├── retail_analysis.py
-├── .gitignore
-├── data/
-│ └── README.md
-└── output/
-└── result_snapshot.txt
+## 数据规模
+- 记录数：约 54 万行
+- 字段数：8 列
+- 特点：存在缺失值、退货订单、异常单价/数量
+
+## 注意
+- 原始数据文件 `retail_data.csv` 不存入 Git（已在 .gitignore 忽略）
+- 使用时自行放入 data/ 目录
