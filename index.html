@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>跨境电商零售大屏</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0b1226;color:#fff;padding:20px}
+        h1{text-align:center;font-size:32px;margin-bottom:24px}
+        .wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .box{background:rgba(22,32,59,0.8);padding:16px;border-radius:8px}
+        .chart-box{height:350px;width:100%}
+        .full{grid-column:1/-1}
+    </style>
+</head>
+<body>
+<h1>跨境电商零售大屏</h1>
+<div class="wrap">
+    <div class="box"><div id="c1" class="chart-box"></div></div>
+    <div class="box"><div id="c2" class="chart-box"></div></div>
+    <div class="box full"><div id="c3" class="chart-box"></div></div>
+</div>
+
+<script>
+const c1 = echarts.init(document.getElementById('c1'))
+const c2 = echarts.init(document.getElementById('c2'))
+const c3 = echarts.init(document.getElementById('c3'))
+
+//读取国家数据
+fetch("./data/country.json")
+.then(res=>res.json())
+.then(data=>{
+    c1.setOption({
+        title:{text:"各国订单TOP10",left:"center"},
+        xAxis:{type:"category",data:data.map(d=>d.Country)},
+        yAxis:{name:"订单数量"},
+        series:[{type:"bar",data:data.map(d=>d.count),itemStyle:{color:"#4fcfe7"}}]
+    })
+})
+
+//读取商品数据
+fetch("./data/goods.json")
+.then(res=>res.json())
+.then(data=>{
+    c2.setOption({
+        title:{text:"热销商品TOP10",left:"center"},
+        yAxis:{type:"category",data:data.map(d=>d.Description)},
+        xAxis:{name:"销量"},
+        series:[{type:"bar",data:data.map(d=>d.TotalQuantity),itemStyle:{color:"#f56565"}}]
+    })
+})
+
+//读取客户散点数据
+fetch("./data/cust.json")
+.then(res=>res.json())
+.then(data=>{
+    c3.setOption({
+        title:{text:"客户消费频次&金额",left:"center"},
+        xAxis:{name:"下单次数"},
+        yAxis:{name:"消费总额"},
+        series:[{type:"scatter",data:data.map(d=>[d.OrderCount,d.TotalSpent]),symbolSize:12,itemStyle:{color:"#34d399"}}]
+    })
+})
+</script>
+</body>
+</html>

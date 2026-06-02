@@ -15,6 +15,11 @@
 2. 运行代码：
     ```bash
     python retail_analysis.py
+3. 前端ECharts可视化大屏启动
+    ```bash
+    cd dashboard
+    python -m http.server 8088
+浏览器访问：http://127.0.0.1:8088，自动加载 JSON 渲染可视化大屏
 ##核心步骤
 数据加载与清洗
 加载订单数据，过滤空值、异常值（如负数量、负价格）
@@ -27,6 +32,7 @@
 使用 PySpark 处理十万级数据，代码可扩展至更大规模数据集
 完整的清洗逻辑，保证数据质量
 结果清晰易读，可直接用于业务决策参考
+分析指标落地 JSON 文件，对接 ECharts 实现网页可视化大屏，打通数据处理到前端展示全链路
 ## 项目结构
 retail-spark-analysis/
 ├── README.md
