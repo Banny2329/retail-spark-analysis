@@ -35,13 +35,20 @@
 分析指标落地 JSON 文件，对接 ECharts 实现网页可视化大屏，打通数据处理到前端展示全链路
 ## 项目结构
 retail-spark-analysis/
-├── README.md
-├── retail_analysis.py
-├── .gitignore
-├── data/
-│ └── README.md
-└── output/
-└── result_snapshot.txt
+├─ README.md
+├─ retail_analysis.py
+├─ .gitignore
+├─ data/
+│  └─ README.md
+├─ output/
+├─ result_snapshot.txt
+└─ dashboard/
+   ├─ index.html
+   ├─ echarts.min.js
+   └─ data/
+      ├─ country.json
+      ├─ cust.json
+      └─ goods.json
 ## 可视化分析结果
 ### 1. 订单国家分布（TOP10）
 ![订单国家分布](output/country_distribution.png)
